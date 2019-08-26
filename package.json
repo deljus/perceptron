@@ -1,0 +1,44 @@
+{
+  "name": "perceptron",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watchAll",
+    "flow": "flow",
+    "start": "babel-node src/index.js",
+    "lint": "eslint ./ --cache --ignore-pattern .gitignore",
+    "precommit-msg": "echo 'Pre-commit checks...' && exit 0"
+  },
+  "pre-commit": {
+    "run": ["lint", "flow", "test"]
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "gpu.js": "^2.0.0-rc.26"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/node": "^7.5.5",
+    "babel-eslint": "^10.0.2",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-flow": "^7.0.0",
+    "babel-jest": "^24.8.0",
+    "flow-bin": "^0.105.1",
+    "jest": "^24.8.0",
+    "eslint": "^6.1.0",
+    "eslint-config-airbnb": "^18.0.0",
+    "eslint-plugin-flowtype": "^4.2.0",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/plugin-proposal-decorators": "^7.4.4",
+    "pre-commit": "^1.2.2"
+  },
+  "jest": {
+    "testMatch": [
+      "**/*.test.js"
+    ]
+  }
+}
