@@ -27,7 +27,7 @@ class Matrix extends Array {
     return this.map((el, ...arg) => callback(new Matrix([...el]), ...arg))
   }
 
-  // $FlowFixMe
+  
   @isSameSizes
   add(matrix: MatrixType): MatrixType {
     return this.deepMap((el, i, k) => el + matrix[i][k])
