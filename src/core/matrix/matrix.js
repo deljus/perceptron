@@ -4,7 +4,7 @@ import { isSameSizes, checkMultipleParams } from './decorators';
 export type MatrixElemType = Array<number>
 export type MatrixType = Array<MatrixElemType>
 
-class Matrix extends Array {
+class Matrix extends Array<MatrixElemType> {
   static createRandomMatrix(row: number , col: number): MatrixType {
     const matrix = [...Array(row)].map(
       () => [...Array(col)].map(() => Math.random())
@@ -23,29 +23,21 @@ class Matrix extends Array {
     return this.map((row, i) => row.map((el, k) => callback(el, i, k, row)));
   }
 
-  mapped(callback: Function){
-    return this.map((el, ...arg) => callback(new Matrix([...el]), ...arg))
-  }
-
-  
   @isSameSizes
   add(matrix: MatrixType): MatrixType {
     return this.deepMap((el, i, k) => el + matrix[i][k])
   }
 
-  // $FlowFixMe
   @isSameSizes
   sub(matrix: MatrixType): MatrixType {
     return this.deepMap((el, i, k) => el - matrix[i][k])
   }
 
-  // $FlowFixMe
   @isSameSizes
   multi(matrix: MatrixType): MatrixType {
     return this.deepMap((el, i, k) => el * matrix[i][k])
   }
 
-  // $FlowFixMe
   @checkMultipleParams
   dot(matrix: MatrixType): MatrixType {
     return this.map(

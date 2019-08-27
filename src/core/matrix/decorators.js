@@ -28,7 +28,6 @@ export const checkMultipleParams = (target: Object, key: string, descriptor: Obj
   const original = descriptor.value;
   if (typeof original === 'function') {
     descriptor.value = function(matrix2) {
-     // console.log(this,matrix2)
       if(!matrix2 || !matrix2[0]){
         throw new Error('Input arguments invalid');
       }

@@ -11,8 +11,10 @@
     "lint": "eslint ./ --cache --ignore-pattern .gitignore",
     "precommit-msg": "echo 'Pre-commit checks...' && exit 0"
   },
-  "pre-commit": {
-    "run": ["lint", "flow", "test"]
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint && npm run flow && npm run test"
+    }
   },
   "keywords": [],
   "author": "",
@@ -34,7 +36,7 @@
     "eslint-plugin-flowtype": "^4.2.0",
     "@babel/plugin-proposal-class-properties": "^7.5.5",
     "@babel/plugin-proposal-decorators": "^7.4.4",
-    "pre-commit": "^1.2.2"
+    "husky": "^3.0.4"
   },
   "jest": {
     "testMatch": [

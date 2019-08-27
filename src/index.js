@@ -1,9 +1,22 @@
 // @flow
-import { Matrix } from './core/matrix';
+import {Matrix} from './core/matrix';
 import ACTIVATION from './core/activation';
-import dataSet from './data';
+import type {MatrixType} from './core/matrix/matrix';
 
-const createRandomWeightMatrix = (schema) =>
+type Schema = Array<number>;
+type WeightMatrix = Array<MatrixType>;
+
+type PerceptronType = {
+  weightMatrix?: Array<MatrixType>,
+  schema?: Schema,
+  epoch?: number,
+  activation?: {
+    fn: Function,
+    dfn: Function,
+  }
+}
+
+const createRandomWeightMatrix = (schema: Schema): WeightMatrix  =>
   schema.map((num, i) => {
     if(i === 0){
       return Matrix.createRandomMatrix(num, num);
@@ -11,14 +24,22 @@ const createRandomWeightMatrix = (schema) =>
     return Matrix.createRandomMatrix(num, schema[i-1])
   });
 
-const createWeightMatrix = (data) => data.map(dt => new Matrix(dt));
+const createWeightMatrix = (data: WeightMatrix): WeightMatrix => data.map(dt => new Matrix(dt));
 
 
-class Neuron {
-  constructor({weightMatrix, schema, activation, epoch }) {
+class Neuron{
+  weightMatrix: Array<MatrixType>;
+  epoch: number;
+  activation: {
+    fn: Function,
+    dfn: Function,
+  };
+
+  constructor({weightMatrix, schema, activation, epoch }: PerceptronType) {
     this.weightMatrix =
             (weightMatrix && createWeightMatrix(weightMatrix)) ||
-            createRandomWeightMatrix(schema);
+            (schema && createRandomWeightMatrix(schema)) ||
+            createRandomWeightMatrix([3,1]);
     this.activation = activation || ACTIVATION.SIGMOID;
     this.epoch = epoch || 1;
   }
@@ -31,29 +52,23 @@ class Neuron {
     this.epoch = epoch;
   }
 
-  result(data) {
-    const newData = new Matrix(...data);
-    const matrix = this.weightMatrix.reduce((acc, layer) =>
+  result(data: Matrix) {
+    return this.weightMatrix.reduce((acc: Matrix, layer: Matrix) =>
       acc.dot(layer.T).deepMap(this.activation.fn)
-    , newData);
-    return matrix;
+    , data);
   }
 
-  learn({ input, output }){
-    const outputMatrix = new Matrix(...output);
-    for (let i = 0; i < this.epoch; i++) {
-      const results = this.result(input);
-      const err = outputMatrix.sub(results);
-      this.weightMatrix
-        .reverse()
-        .forEach(elem =>
-        {}
-        );
-    }
-  }
+  // learn({ input, output }){
+  //   const outputMatrix = new Matrix(...output);
+  //   for (let i = 0; i < this.epoch; i++) {
+  //     const results = this.result(input);
+  //     //const err = outputMatrix.sub(results);
+  //     this.weightMatrix
+  //       .reverse()
+  //   }
+  // }
 }
 
 const neuron = new Neuron({ schema: [3,1] });
-neuron.learn(dataSet);
 console.log(neuron.result([[1,2,3]]));
 
