@@ -6,7 +6,7 @@ export const mse = (truth, received) => {
   let diffSum = 0;
 
   for(let i = 0; i < truth.length; i++){
-    diffSum += truth[i] + received[i];
+    diffSum += abs (truth[i] - received[i]);
   }
 
   return diffSum / truth.length;
