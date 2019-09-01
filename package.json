@@ -2,45 +2,70 @@
   "name": "perceptron",
   "version": "1.0.0",
   "description": "",
-  "main": "src/index.js",
+  "main": "src/main.js",
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watchAll",
     "flow": "flow",
-    "start": "babel-node src/index.js",
+    "electron": "set ELECTRON_START_URL=http://localhost:3000 && electron bootwithbabel.js .",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
     "lint": "eslint ./ --cache --ignore-pattern .gitignore",
-    "precommit-msg": "echo 'Pre-commit checks...' && exit 0"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run lint && npm run flow && npm run test"
-    }
+    "precommit-msg": "echo 'Pre-commit checks...' && exit 0",
+    "dev": "nf start -p 3000"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "gpu.js": "^2.0.0-rc.26"
+    "gpu.js": "^2.0.0-rc.26",
+    "@blueprintjs/core": "^3.18.0",
+    "@blueprintjs/select": "^3.10.0",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "styled-components": "^4.3.2",
+    "react-redux": "^6.0.0",
+    "redux": "^4.0.1",
+    "react-router-dom": "^4.3.1",
+    "react-router": "^4.3.1",
+    "history": "^4.9.0"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
     "@babel/node": "^7.5.5",
-    "babel-eslint": "^10.0.2",
+    "@babel/polyfill": "^7.4.4",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/plugin-proposal-decorators": "^7.4.4",
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-flow": "^7.0.0",
+    "babel-eslint": "^10.0.2",
     "babel-jest": "^24.8.0",
-    "flow-bin": "^0.105.1",
-    "jest": "^24.8.0",
+    "electron": "^6.0.6",
     "eslint": "^6.1.0",
     "eslint-config-airbnb": "^18.0.0",
     "eslint-plugin-flowtype": "^4.2.0",
-    "@babel/plugin-proposal-class-properties": "^7.5.5",
-    "@babel/plugin-proposal-decorators": "^7.4.4",
-    "husky": "^3.0.4"
+    "flow-bin": "^0.105.1",
+    "foreman": "^3.0.1",
+    "husky": "^3.0.4",
+    "jest": "^24.8.0",
+    "react-scripts": "^3.1.1",
+    "redux-logger": "^3.0.6"
   },
   "jest": {
     "testMatch": [
       "**/*.test.js"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
     ]
   }
 }
