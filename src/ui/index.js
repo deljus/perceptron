@@ -5,7 +5,7 @@ import history from './history';
 import store from './store';
 import { Provider } from 'react-redux';
 import { LeftMenu } from './containers';
-import { IndexPage, SettingsPage } from './pages';
+import { IndexPage, SettingsPage, InputLayerPage } from './pages';
 import URLS from './urls';
 
 const Container = styled.div`
@@ -36,6 +36,7 @@ export default () => (
           <Switch>
             <Route path={URLS.INDEX} component={IndexPage} exact />
             <Route path={URLS.SETTINGS} component={SettingsPage} exact />
+            <Route path={URLS.INPUT_LAYER} component={InputLayerPage} exact />
           </Switch>
         </PageContainer>
       </Container>

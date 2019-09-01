@@ -1,10 +1,21 @@
+import ACTIVATION from '../../core/activation';
+import * as CONST from '../core/constants';
 
 const initState = {
-  schema: [3,3]
+  hiddenLayersSchema: [3,3],
+  activation: Object.keys(ACTIVATION)[0],
+  learnData: null,
+  epoch: 20000,
 };
 
-const reducer = (state = initState, action) => {
+const app = (state = initState, action) => {
   switch (action.type) {
+      case(CONST.FILTER_CHANGE):
+        const { name, value } = action;
+        return {
+            ...state,
+            [name]: value
+        };
 
   default:
     return { ...state }
@@ -13,5 +24,5 @@ const reducer = (state = initState, action) => {
 }
 
 export {
-  reducer
+    app
 }

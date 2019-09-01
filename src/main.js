@@ -8,9 +8,9 @@ let mainWindow;
 
 function createWindow() {
   mainWindow = new BrowserWindow({
-    width: 800,
+    width: 900,
     height: 600,
-    minWidth: 400,
+    minWidth: 850,
   });
   const startUrl = process.env.ELECTRON_START_URL || url.format({
     pathname: path.join(__dirname, '/../build/index.html'),
@@ -25,7 +25,7 @@ function createWindow() {
 
   mainWindow.on('closed', function () {
     mainWindow = null
-  })
+  });
 }
 
 app.on('ready', () => {
@@ -37,6 +37,7 @@ app.on('ready', () => {
 });
 
 app.on('window-all-closed', function () {
+  console.log(process)
   // On OS X it is common for applications and their menu bar
   // to stay active until the user quits explicitly with Cmd + Q
   if (process.platform !== 'darwin') {

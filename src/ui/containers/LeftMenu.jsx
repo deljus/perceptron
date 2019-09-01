@@ -20,7 +20,8 @@ const LeftMenu = ({ location }) => {
       />
       <MenuItem
         icon="step-chart"
-        onClick={handleClick()}
+        onClick={handleClick(URLS.INPUT_LAYER)}
+        active={location.pathname === URLS.INPUT_LAYER}
         text="Input layout"
       />
       <MenuItem

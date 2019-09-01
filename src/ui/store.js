@@ -1,17 +1,15 @@
 // @flow
 import {
-  applyMiddleware,
   combineReducers,
   createStore,
 } from 'redux';
-import logger from 'redux-logger'
 import * as reducers from './reducers';
 
 const store = createStore(
   combineReducers({
     ...reducers,
   }),
-  applyMiddleware(logger),
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
 export default store;

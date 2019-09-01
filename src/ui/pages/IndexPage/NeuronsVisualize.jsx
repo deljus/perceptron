@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Checker from './Checker';
+import {Slider} from "@blueprintjs/core";
 
 const Th = styled.th`
     text-align: center !important;
@@ -22,16 +23,9 @@ const NeuronsVisualize = ({ schema, count }) => {
   const renderRows = () => (<tr>{ schema.map(renderTd) }</tr>);
 
   return(
-    <table style={{ width: '100%' }} className="bp3-html-table .modifier">
-      <thead>
-        <tr>
-          { schema.map(renderTh) }
-        </tr>
-      </thead>
-      <tbody>
-        { rows.map(renderRows) }
-      </tbody>
-    </table>
+    <div>
+        { schema.map((item) => <Slider max={8} min={1} value={item} vertical/> )}
+    </div>
   )
 }
 

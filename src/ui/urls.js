@@ -1,4 +1,5 @@
 export default {
   INDEX: '/',
-  SETTINGS: '/settings'
+  SETTINGS: '/settings',
+  INPUT_LAYER: '/input-layer'
 }
